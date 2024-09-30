@@ -32,7 +32,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: tyrongower/uptime_robot_exporter:latest
+          tags: "tyrongower/uptime_robot_exporter:latest"
 
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1

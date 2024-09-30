@@ -40,6 +40,9 @@ public class UptimeRobotApiClient(
                 HttpContent content = new FormUrlEncodedContent(formData);
                 var response = await httpClient.PostAsync($"getMonitors?api_key={apiKey}", content);
 
+                var json = await response.Content.ReadAsStringAsync();
+                logger.LogInformation("Content: {Json}", json);
+
                 if (!response.IsSuccessStatusCode)
                 {
                     var errorContent = await response.Content.ReadAsStringAsync();
@@ -53,8 +56,8 @@ public class UptimeRobotApiClient(
                     return monitors;
                 }
 
-                var json = await response.Content.ReadAsStringAsync();
-                logger.LogDebug("Content: {Json}", json);
+
+
 
                 var monitorResult = JsonSerializer.Deserialize<GetMonitorsResult>(json);
 

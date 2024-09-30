@@ -1,0 +1,11 @@
+﻿services:
+  uptime_robot_exporter:
+    image: uptime_robot_exporter
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      UPTIME_ROBOT_API_KEY: ""
+    ports:
+      - "8080:8080"
+

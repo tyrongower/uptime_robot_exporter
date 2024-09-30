@@ -69,8 +69,7 @@ public class UptimeRobotApiClient(
                 monitors.AddRange(monitorResult.Monitors);
                 remaining = monitorResult.Pagination.Total - monitors.Count;
 
-                logger.LogInformation("Calling API: GetAllMonitors completed successfully, {Remaining} remaining}",
-                    remaining);
+                logger.LogInformation("GetAllMonitors completed successfully, {Remaining} remaining",remaining);
 
             } while (remaining != 0);
         }

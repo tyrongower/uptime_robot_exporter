@@ -18,7 +18,7 @@ public class MetricsService
     private const string  AvgResponseTimeMetricName = "uptime_robot_monitor_response_time_avg";
     private const string  AvgResponseTimeMetricHelp = "Average Uptime Robot Monitor Response Time";
 
-    private readonly Gauge _errorsGuage;
+    private readonly Gauge _errorsGauge;
     private const string  ErrorsMetricName = "uptime_robot_monitor_errors";
     private const string  ErrorsMetricHelp = "Average Uptime Robot Monitor Errors";
 
@@ -27,7 +27,7 @@ public class MetricsService
         _responseTimeGauge = Metrics.CreateGauge(StatusMetricName, StatusMetricHelp, "id", "url", "name");;
         _statusGauge = Metrics.CreateGauge(ResponseTimeMetricName, ResponseTimeMetricHelp, "id", "url", "name");
         _avgResponseTimeGauge = Metrics.CreateGauge(AvgResponseTimeMetricName, AvgResponseTimeMetricHelp, "id", "url", "name");
-        _errorsGuage = Metrics.CreateGauge(ErrorsMetricName, ErrorsMetricHelp, "error");
+        _errorsGauge = Metrics.CreateGauge(ErrorsMetricName, ErrorsMetricHelp, "error");
     }
 
     public void LogMonitorMetrics(Monitor monitor)
@@ -49,7 +49,7 @@ public class MetricsService
 
     public void LogErrorMetrics(string error)
     {
-        _statusGauge.WithLabels(error).Inc();
+        _errorsGauge.WithLabels(error).Inc();
     }
 
 }

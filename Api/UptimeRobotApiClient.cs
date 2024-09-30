@@ -54,6 +54,8 @@ public class UptimeRobotApiClient(
                 }
 
                 var json = await response.Content.ReadAsStringAsync();
+                logger.LogDebug("Content: {Json}", json);
+
                 var monitorResult = JsonSerializer.Deserialize<GetMonitorsResult>(json);
 
                 if (monitorResult?.Monitors == null || monitorResult.Stat == "fail")
@@ -65,6 +67,8 @@ public class UptimeRobotApiClient(
 
                     return monitors;
                 }
+
+                logger.LogInformation("{MonitorsCount} monitors returned from api call", monitorResult.Monitors.Count);
 
                 monitors.AddRange(monitorResult.Monitors);
                 remaining = monitorResult.Pagination.Total - monitors.Count;

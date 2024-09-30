@@ -20,7 +20,7 @@ available for Prometheus to scrape.
 You can run the Uptime Robot Prometheus Exporter using Docker with the following command:
 
 ```sh
-docker run -d -p 5000:5000 --name uptime_robot_exporter -e UPTIME_ROBOT_API_KEY=your-api-key tyrongower/uptime_robot_exporter
+docker run -d -p 8080:8080 --name uptime_robot_exporter -e UPTIME_ROBOT_API_KEY=your-api-key tyrongower/uptime_robot_exporter
 ```
 
 ## Docker Compose
@@ -49,7 +49,7 @@ docker-compose up -d
 
 ## Usage
 
-1. After running the exporter, it will be available at `http://localhost:5000/metrics`.
+1. After running the exporter, it will be available at `http://localhost:8080/metrics`.
 
 2. Add the exporter as a target in your Prometheus configuration:
 
@@ -57,7 +57,7 @@ docker-compose up -d
     scrape_configs:
       - job_name: 'uptime_robot'
         static_configs:
-          - targets: ['localhost:5000']
+          - targets: ['localhost:8080']
     ```
 
 3. Reload the Prometheus configuration to start scraping metrics from the exporter.
